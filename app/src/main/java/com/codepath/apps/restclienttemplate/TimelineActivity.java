@@ -109,7 +109,7 @@ public class TimelineActivity extends AppCompatActivity {
         });
 
     }
-
+// another way to do an on click. by looking to see if the item i clicked on matches id
 //    @Override
 //    public boolean onOptionsItemSelected(MenuItem item) {
 //        if(item.getItemId() == R.id.miCompose){
@@ -129,12 +129,13 @@ public class TimelineActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // REQUEST_CODE is defined above
         if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
-            // Extract name value from result extras
+            // Extract tweet value from data intent
              Tweet result = Parcels.unwrap(data.getParcelableExtra("tweet"));
-            tweets.add(0, result); //adds tweet to top of timeline
+
+             tweets.add(0, result); //adds tweet to top of timeline array
             // notify the adapter that we've added the item
             tweetAdapter.notifyItemInserted(0);
-
+            rvTweets.scrollToPosition(0); // scrolls to top
 
         }
     }
