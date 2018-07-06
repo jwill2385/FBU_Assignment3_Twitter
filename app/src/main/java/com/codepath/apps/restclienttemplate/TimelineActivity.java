@@ -182,14 +182,7 @@ public class TimelineActivity extends AppCompatActivity {
         });
 
     }
-// another way to do an on click. by looking to see if the item i clicked on matches id
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        if(item.getItemId() == R.id.miCompose){
-//            onComposeAction();
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
+
 
     public void onComposeAction(MenuItem mi) {
         Log.d(TAG, "onComposeAction() – start's our compose activity for a result.");

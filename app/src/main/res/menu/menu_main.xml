@@ -8,6 +8,7 @@
         android:onClick="onComposeAction"
         android:title="Compose"
         app:showAsAction="ifRoom"></item>
+
     <item
         android:id="@+id/miProfile"
         android:icon="@drawable/ic_launcher_twitter_round"
