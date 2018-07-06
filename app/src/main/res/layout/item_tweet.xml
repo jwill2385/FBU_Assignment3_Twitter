@@ -34,8 +34,17 @@
         android:id="@+id/tvTimeStamp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_marginLeft="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/tvAccountName"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/tvAccountName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/tvUserName"
         android:text="TextView" />
 </RelativeLayout>
