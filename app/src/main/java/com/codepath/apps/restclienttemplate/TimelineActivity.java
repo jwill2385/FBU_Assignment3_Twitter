@@ -200,6 +200,7 @@ public class TimelineActivity extends AppCompatActivity {
         startActivityForResult(i, REQUEST_CODE);
     }
 
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.d(TAG, "onActivityResult()");
@@ -215,5 +216,12 @@ public class TimelineActivity extends AppCompatActivity {
             rvTweets.scrollToPosition(0); // scrolls to top
 
         }
+    }
+
+    public void toProfileAction(MenuItem ln){
+        Log.d(TAG, "toProfileAction()- sends us to profile page");
+        // this function moves us from TimelineActivity to ProfileActivity
+        Intent t = new Intent(TimelineActivity.this, ProfileActivity.class);
+        startActivity(t);
     }
 }

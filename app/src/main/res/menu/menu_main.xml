@@ -12,5 +12,6 @@
         android:id="@+id/miProfile"
         android:icon="@drawable/ic_launcher_twitter_round"
         android:title="Profile"
+        android:onClick="toProfileAction"
         app:showAsAction="ifRoom|withText"></item>
 </menu>
