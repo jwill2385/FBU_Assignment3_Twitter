@@ -57,6 +57,16 @@ public class TimelineActivity extends AppCompatActivity {
         // find the recycler view
         rvTweets = (RecyclerView) findViewById(R.id.rvTweet);
 
+        // initiate arraylist (data source)
+        tweets = new ArrayList<>();
+        // construct the adapter from this data source
+        tweetAdapter = new TweetAdapter(tweets);
+        // recyclerView setup (layout manager, use adapter)
+        rvTweets.setLayoutManager(new LinearLayoutManager(this));
+        // set the adapter
+        rvTweets.setAdapter(tweetAdapter);
+        populateTimeline();
+
         // Setup refresh listener which triggers new data loading
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -72,18 +82,6 @@ public class TimelineActivity extends AppCompatActivity {
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
-
-        // initiate arraylist (data source)
-        tweets = new ArrayList<>();
-        // construct the adapter from this data source
-        tweetAdapter = new TweetAdapter(tweets);
-        // recyclerView setup (layout manager, use adapter)
-        rvTweets.setLayoutManager(new LinearLayoutManager(this));
-        // set the adapter
-        rvTweets.setAdapter(tweetAdapter);
-        populateTimeline();
-
-
 
     }
 
@@ -149,10 +147,12 @@ public class TimelineActivity extends AppCompatActivity {
         client.getHomeTimeline(new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                Log.d(TAG, "populateTimeline.onSuccess(count = " + response.length() + ")");
+                Log.d(TAG, "getHomeTimeLine.onSuccess(count = " + response.length() + ")");
 
                 // remember to CLEAR OUT old items before appending in the new ones
                 tweetAdapter.clear();
+                tweets.clear();
+                Log.d(TAG, "count update (count = " + response.length() + ")");
                 // iterate through JSON array
                 // for each entry deserialize the JSON object
                 for (int i = 0; i < response.length(); i++) {
@@ -161,14 +161,12 @@ public class TimelineActivity extends AppCompatActivity {
                         Tweet tweet = Tweet.fromJSON(response.getJSONObject(i));
                         // add that Tweet model to our data source
                         tweets.add(tweet);
-                        // notify the adapter that we've added the item
-                        tweetAdapter.notifyItemInserted(tweets.size() - 1);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
                 // ...the data has come back, add new items to your adapter...
-                tweetAdapter.addAll(tweets);
+                tweetAdapter.notifyDataSetChanged();
                 // Now we call setRefreshing(false) to signal refresh has finished
                 swipeContainer.setRefreshing(false);
             }
