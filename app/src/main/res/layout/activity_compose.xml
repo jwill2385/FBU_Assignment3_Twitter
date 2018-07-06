@@ -9,20 +9,19 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/character_count"
             app:counterEnabled="true"
             app:counterMaxLength="140">
 
-        <EditText
-            android:id="@+id/etMessage"
-            android:layout_width="296dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:ems="10"
-            android:maxLength="140"
-            android:inputType="textPersonName"
-            android:text="message" />
+            <EditText
+                android:id="@+id/etMessage"
+                android:layout_width="296dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:ems="10"
+                android:maxLength="140"
+                android:inputType="textPersonName"
+                android:text="message" />
     </android.support.design.widget.TextInputLayout>
 
         <Button
